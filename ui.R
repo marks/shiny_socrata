@@ -2,6 +2,7 @@ shinyUI(fluidPage(
   tags$head(includeScript("google-analytics.js")),
   headerPanel(
   	h1("Analyze CSV Data")
+  	helpText("built by Mark Silverberg @ Socrata | @skram | mark.silverberg@socrata.com")
   ),
   sidebarPanel(
     textInput("url", "URL to CSV", "http://data.cms.gov/resource/kcsi-wmjs.csv"),
