@@ -1,4 +1,6 @@
-shinyUI(fluidPage(
+library(shinythemes)
+
+shinyUI(fluidPage(theme = shinytheme("flatly"),
   tags$head(includeScript("google-analytics.js")),
   headerPanel(
   	h1("Analyze CSV Data")

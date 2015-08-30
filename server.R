@@ -43,8 +43,6 @@ shinyServer(function(input, output) {
     boxplot(eval(y)~eval(x),data=datasetInput()) #,xlab=x,ylab=y)
   })
 
-
-
 })
 
 
