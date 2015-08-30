@@ -40,7 +40,7 @@ shinyServer(function(input, output) {
   output$boxplot <- renderPlot({
     x <- as.symbol(input$xAxisSelector)
     y <- as.symbol(input$yAxisSelector)
-    boxplot(eval(y)~eval(x),data=datasetInput()) #,xlab=x,ylab=y)
+    boxplot(eval(y)~eval(x),data=datasetInput(), xlab=input$xAxisSelector,ylab=input$yAxisSelector)
   })
 
 })
