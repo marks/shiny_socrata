@@ -33,7 +33,7 @@ shinyServer(function(input, output, session) {
     else {
       list(
         selectizeInput("xAxisSelector", "X Axis Variable:",
-            colnames(datasetInput()), selected=""),
+            colnames(datasetInput())),
         selectizeInput("yAxisSelector", "Y Axis Variable:",
             colnames(datasetInput()))
       )      
@@ -42,7 +42,15 @@ shinyServer(function(input, output, session) {
 
   ## Datatable
   output$table <- renderTable({
-    head(datasetInput(),n=20)
+    head(datasetInput(),n=5)
+  })
+
+  ## Variable Summaries
+  output$xAxisSummary <- renderPrint({
+    summary(datasetInput()[,c(input$yAxisSelector)])
+  })
+  output$yAxisSummary <- renderPrint({
+    summary(datasetInput()[,c(input$xAxisSelector)])
   })
 
 
@@ -51,16 +59,17 @@ shinyServer(function(input, output, session) {
   output$scatterplot <- renderPlot({
     x <- as.symbol(input$xAxisSelector)
     y <- as.symbol(input$yAxisSelector)
-    qplot(eval(x),eval(y),data=datasetInput(), xlab=x,ylab=y) + 
+    scatterplot <- ggplot(datasetInput(),aes_string(x,y), xlab=x,ylab=y) + 
+      theme(legend.position="bottom") +
       geom_point() +
       coord_cartesian(xlim = scatterplot_ranges$scatterplot_x, ylim = scatterplot_ranges$scatterplot_y)
+    return(scatterplot)
   })
   observeEvent(input$scatterplot_dblclick, {
     brush <- input$scatterplot_brush
     if (!is.null(brush)) {
       scatterplot_ranges$scatterplot_x <- c(brush$xmin, brush$xmax)
       scatterplot_ranges$scatterplot_y <- c(brush$ymin, brush$ymax)
-
     } else {
       scatterplot_ranges$scatterplot_x <- NULL
       scatterplot_ranges$scatterplot_y <- NULL
@@ -72,16 +81,16 @@ shinyServer(function(input, output, session) {
   output$boxplot <- renderPlot({
     x <- as.symbol(input$xAxisSelector)
     y <- as.symbol(input$yAxisSelector)
-    qplot(eval(x),eval(y),data=datasetInput(), xlab=x,ylab=y) + 
+    boxplot <- ggplot(datasetInput(),aes_string(x,y), xlab=x,ylab=y) + 
       geom_boxplot() +
       coord_cartesian(xlim = boxplot_ranges$boxplot_x, ylim = boxplot_ranges$boxplot_y)
+    return(boxplot)
   })
   observeEvent(input$boxplot_dblclick, {
     brush <- input$boxplot_brush
     if (!is.null(brush)) {
       boxplot_ranges$boxplot_x <- c(brush$xmin, brush$xmax)
       boxplot_ranges$boxplot_y <- c(brush$ymin, brush$ymax)
-
     } else {
       boxplot_ranges$boxplot_x <- NULL
       boxplot_ranges$boxplot_y <- NULL

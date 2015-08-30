@@ -4,11 +4,19 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 	tags$head(includeScript("google-analytics.js")),
 	headerPanel("Analyze CSV Data"),
 	sidebarPanel(
+		h4("Setup"),
 		textInput("url", "URL to CSV", "http://data.cms.gov/resource/kcsi-wmjs.csv"),
 		uiOutput('axisSelectors'),
 		hr(),
-		helpText("Psst: you can pass the following url parameters: url, xAxis, yAxis."),
-		helpText("Examples:"),
+		HTML(
+			"<span class='help-block'>",
+			"Psst: you can pass the following url parameters: ",
+			"<span style='font-family: monospace;'>url</span>,",
+			"<span style='font-family: monospace;'>xAxis</span>, and ",
+			"<span style='font-family: monospace;'>yAxis</span>.",
+			"</span>"
+		),
+		h4("Try these URLs:"),
 		helpText(HTML("<ul>
 			<li>data.cms.gov 2014 ACO performance data: ACO-1 by Track: <a href='?url=http://data.cms.gov/resource/kcsi-wmjs.csv&xAxis=track&yAxis=aco_1'>?url=http://data.cms.gov/resource/kcsi-wmjs.csv&xAxis=track&yAxis=aco_1</a></li>
 			<li>data.medicare.gov State Hospital Acquired Infection (HAI) scores: <a href='?url=http://data.medicare.gov/resource/k2ze-bqvw.csv&xAxis=Measure.Name&yAxis=Score'>?url=http://data.medicare.gov/resource/k2ze-bqvw.csv&xAxis=Measure.Name&yAxis=Score</a></li>
@@ -41,9 +49,20 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 		),
 		helpText("You can click, drag, and double click to zoom into the scatterplot. Double click to zoom back out to original extent."),
 		hr(),
+		fluidRow(
+			column(width = 6,
+				h4("X Axis Variable Summary"),
+				verbatimTextOutput("xAxisSummary")
+			),
+			column(width = 6,
+				h4("Y Axis Variable Summary"),
+				verbatimTextOutput("yAxisSummary")
+			)
+		),
+		hr(),
 		h2("Data Sample"),
 		helpText("Only the first twenty rows are shown below"),
-		dataTableOutput('table')
+		tableOutput('table')
 	)
 ))
 
