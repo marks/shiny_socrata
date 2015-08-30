@@ -35,19 +35,23 @@ shinyServer(function(input, output, session) {
     if(is.null(input$url)){}
     else {
       list(
-        selectizeInput("xAxisSelector", "X Axis Variable:",
+        selectizeInput("xAxisSelector", "X Axis Variable (?xAxis=)",
             colnames(datasetInput())),
-        selectizeInput("yAxisSelector", "Y Axis Variable:",
+        selectizeInput("yAxisSelector", "Y Axis Variable (?yAxis=)",
             colnames(datasetInput())),
-        selectizeInput("colorBySelector", "Color By (scatter plot only):",
+        selectizeInput("colorBySelector", "Color By (?colorBy=) [scatter plot only]:",
             c(c("Do not color",colnames(datasetInput()))))
       )      
     }
   })
 
-  ## Datatable
-  output$table <- renderTable({
-    head(datasetInput(),n=5)
+  ## Datatable (populated with first five rows unless a graph has been clicked or hovered over)
+  output$table_or_click <- renderTable({
+    if(!is.null(input$table_or_click)){
+      nearPoints(datasetInput(), input$table_or_click, addDist=FALSE, xvar=input$xAxisSelector, yvar=input$yAxisSelector)      
+    } else {
+      head(datasetInput(),n=5)  
+    }    
   })
 
   ## Variable Summaries
