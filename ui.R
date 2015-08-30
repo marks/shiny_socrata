@@ -31,7 +31,9 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 		helpText(HTML("<ul>
 			<li>data.cms.gov 2014 ACO performance data: ACO-1 by Track: <a href='?url=http://data.cms.gov/resource/ucce-hhpu.csv&xAxis=Participate.in.Advance.Payment.Model&yAxis=ACO.30&colorBy=Track'>?url=http://data.cms.gov/resource/ucce-hhpu.csv&xAxis=Participate.in.Advance .Payment.Model&yAxis=ACO.30&colorBy=Track</a></li>
 			<li>data.medicare.gov State Hospital Acquired Infection (HAI) scores: <a href='?url=http://data.medicare.gov/resource/k2ze-bqvw.csv&xAxis=Measure.Name&yAxis=Score'>?url=http://data.medicare.gov/resource/k2ze-bqvw.csv&xAxis=Measure.Name&yAxis=Score</a></li>
-			<li>data.cityofchicago.org Affordable Housing capacity by type: <a href='?url=http://data.cityofchicago.org/resource/s6ha-ppgi.csv&xAxis=Property.Type&yAxis=Units'>?url=http://data.cityofchicago.org/resource/s6ha-ppgi.csv&xAxis=Property.Type&yAxis=Units</a></li>
+			<li>data.cityofchicago.org Affordable Housing: <a href='?url=http://data.cityofchicago.org/resource/s6ha-ppgi.csv&xAxis=Property.Type&yAxis=Units'>?url=http://data.cityofchicago.org/resource/s6ha-ppgi.csv&xAxis=Property.Type&yAxis=Units</a></li>
+			<li>data.cityofnewyork.us Times Square Signage: <a href='?url=http://data.cityofnewyork.us/resource/6bzx-emuu.csv&xAxis=Location&yAxis=Width&colorBy=Type'>?url=http://data.cityofnewyork.us/resource/6bzx-emuu.csv&xAxis=Location&yAxis=Width&colorBy=Type</a></li>
+			<li>data.kcmo.org Vacant Lots: <a href='?url=http://data.kcmo.org/resource/2dru-6tkm.csv&xAxis=Zoned.As&yAxis=Square.Footage&colorBy=Property.Class'>?url=http://data.kcmo.org/resource/2dru-6tkm.csv&xAxis=Zoned.As&yAxis=Square.Footage&colorBy=Property.Class</a></li>
 			</ul>")),
 		br(),
 		hr(),
