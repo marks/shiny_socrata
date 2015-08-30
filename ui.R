@@ -6,7 +6,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 	sidebarPanel(
 		h4("Setup"),
 		textInput("url", "URL to CSV", "http://data.cms.gov/resource/kcsi-wmjs.csv"),
-		uiOutput('axisSelectors'),
+		uiOutput('chartOptions'),
 		hr(),
 		HTML(
 			"<span class='help-block'>",
@@ -14,20 +14,20 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 			"<span style='font-family: monospace;'>url</span>,",
 			"<span style='font-family: monospace;'>xAxis</span>, and ",
 			"<span style='font-family: monospace;'>yAxis</span>.",
+			"<span style='font-family: monospace;'>colorBy</span>.",
 			"</span>"
 		),
 		h4("Try these URLs:"),
 		helpText(HTML("<ul>
-			<li>data.cms.gov 2014 ACO performance data: ACO-1 by Track: <a href='?url=http://data.cms.gov/resource/kcsi-wmjs.csv&xAxis=track&yAxis=aco_1'>?url=http://data.cms.gov/resource/kcsi-wmjs.csv&xAxis=track&yAxis=aco_1</a></li>
+			<li>data.cms.gov 2014 ACO performance data: ACO-1 by Track: <a href='?url=http://data.cms.gov/resource/kcsi-wmjs.csv&xAxis=track&yAxis=aco_1&colorBy=participate_in_advance_payment_model'>?url=http://data.cms.gov/resource/kcsi-wmjs.csv&xAxis=track&yAxis=aco_1& colorBy=participate_in_advance_payment_model</a></li>
 			<li>data.medicare.gov State Hospital Acquired Infection (HAI) scores: <a href='?url=http://data.medicare.gov/resource/k2ze-bqvw.csv&xAxis=Measure.Name&yAxis=Score'>?url=http://data.medicare.gov/resource/k2ze-bqvw.csv&xAxis=Measure.Name&yAxis=Score</a></li>
 			<li>data.cityofchicago.org Affordable Housing capacity by type: <a href='?url=http://data.cityofchicago.org/resource/s6ha-ppgi.csv&xAxis=Property.Type&yAxis=Units'>?url=http://data.cityofchicago.org/resource/s6ha-ppgi.csv&xAxis=Property.Type&yAxis=Units</a></li>
 			</ul>"))
 	),
 	mainPanel(
-		h2("Plots"),
 		fluidRow(
 			column(width = 6,
-				h3("Scatterplot"),
+				h3("Scatter plot"),
 	      plotOutput("scatterplot", height = 350,
 	        dblclick = "scatterplot_dblclick",
 	        brush = brushOpts(
@@ -37,7 +37,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 	      )
 			),
 			column(width = 6,
-				h3("Boxplot"),
+				h3("Box plot"),
 	      plotOutput("boxplot", height = 350,
 	        dblclick = "boxplot_dblclick",
 	        brush = brushOpts(
@@ -47,7 +47,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 	      )
 			)
 		),
-		helpText("You can click, drag, and double click to zoom into the scatterplot. Double click to zoom back out to original extent."),
+		helpText("You can click, drag, and double click to zoom into the scatter plot. Double click to zoom back out to original extent."),
 		hr(),
 		fluidRow(
 			column(width = 6,

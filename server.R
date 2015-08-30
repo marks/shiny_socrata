@@ -17,6 +17,9 @@ shinyServer(function(input, output, session) {
     if(!is.null(urlQuery$yAxis)){
       updateSelectizeInput(session, "yAxisSelector", selected = urlQuery$yAxis)
     }
+    if(!is.null(urlQuery$colorBy)){
+      updateSelectizeInput(session, "colorBySelector", selected = urlQuery$colorBy)
+    }
     # read text box's URL, read, and store in data frame which is returned
     inURL <- input$url
     if(is.null(inURL)){
@@ -28,14 +31,16 @@ shinyServer(function(input, output, session) {
   })
 
   ## Axis Selectors
-  output$axisSelectors <- renderUI({
+  output$chartOptions <- renderUI({
     if(is.null(input$url)){}
     else {
       list(
         selectizeInput("xAxisSelector", "X Axis Variable:",
             colnames(datasetInput())),
         selectizeInput("yAxisSelector", "Y Axis Variable:",
-            colnames(datasetInput()))
+            colnames(datasetInput())),
+        selectizeInput("colorBySelector", "Color By (scatter plot only):",
+            c(c("Do not color",colnames(datasetInput()))))
       )      
     }
   })
@@ -63,6 +68,9 @@ shinyServer(function(input, output, session) {
       theme(legend.position="bottom") +
       geom_point() +
       coord_cartesian(xlim = scatterplot_ranges$scatterplot_x, ylim = scatterplot_ranges$scatterplot_y)
+    if(input$colorBySelector != "Do not color"){
+      scatterplot <- (scatterplot + aes_string(colour = input$colorBySelector))
+    }
     return(scatterplot)
   })
   observeEvent(input$scatterplot_dblclick, {
