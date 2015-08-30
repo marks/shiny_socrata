@@ -2,11 +2,21 @@ library(shinythemes)
 
 shinyUI(fluidPage(theme = shinytheme("flatly"),
 	tags$head(includeScript("google-analytics.js")),
-	headerPanel("Analyze CSV Data"),
+	tags$title("R/Shiny w/ Open Data"),
+	
+	column(width = 12,
+		h1("Analyze CSV Data"),
+		HTML(
+			"<div class='alert alert-info'>",
+	 		"<strong>Heads up!</strong> This is a <em>prototype</em> using R/Shiny and Socrata. Contact Mark Silverberg (<a href='http://twitter.com/skram' target='blank' class='alert-link'>@Skram</a> || <a href='mailto:mark.silverberg@socrata.com' class='alert-link'>mark.silverberg@socrata.com</a>) with any questions or comments.",
+			"</div>"
+		)
+	),
 	sidebarPanel(
 		h4("Setup"),
-		textInput("url", "URL to CSV (?url=)", "http://data.cms.gov/resource/kcsi-wmjs.csv"),
+		textInput("url", "URL to CSV (?url=)", "http://data.cms.gov/resource/ucce-hhpu.csv"),
 		uiOutput('chartOptions'),
+		br(),
 		hr(),
 		# HTML(
 		# 	"<span class='help-block'>",
@@ -19,10 +29,11 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 		# ),
 		h4("Try these URLs:"),
 		helpText(HTML("<ul>
-			<li>data.cms.gov 2014 ACO performance data: ACO-1 by Track: <a href='?url=http://data.cms.gov/resource/kcsi-wmjs.csv&xAxis=track&yAxis=aco_1&colorBy=participate_in_advance_payment_model'>?url=http://data.cms.gov/resource/kcsi-wmjs.csv&xAxis=track&yAxis=aco_1& colorBy=participate_in_advance_payment_model</a></li>
+			<li>data.cms.gov 2014 ACO performance data: ACO-1 by Track: <a href='?url=http://data.cms.gov/resource/ucce-hhpu.csv&xAxis=Participate.in.Advance.Payment.Model&yAxis=ACO.30&colorBy=Track'>?url=http://data.cms.gov/resource/ucce-hhpu.csv&xAxis=Participate.in.Advance .Payment.Model&yAxis=ACO.30&colorBy=Track</a></li>
 			<li>data.medicare.gov State Hospital Acquired Infection (HAI) scores: <a href='?url=http://data.medicare.gov/resource/k2ze-bqvw.csv&xAxis=Measure.Name&yAxis=Score'>?url=http://data.medicare.gov/resource/k2ze-bqvw.csv&xAxis=Measure.Name&yAxis=Score</a></li>
 			<li>data.cityofchicago.org Affordable Housing capacity by type: <a href='?url=http://data.cityofchicago.org/resource/s6ha-ppgi.csv&xAxis=Property.Type&yAxis=Units'>?url=http://data.cityofchicago.org/resource/s6ha-ppgi.csv&xAxis=Property.Type&yAxis=Units</a></li>
 			</ul>")),
+		br(),
 		hr(),
 		h4("X Axis Variable Summary"),
 		verbatimTextOutput("xAxisSummary"),

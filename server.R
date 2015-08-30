@@ -13,12 +13,18 @@ shinyServer(function(input, output, session) {
     }
     if(!is.null(urlQuery$xAxis)){
       updateSelectizeInput(session, "xAxisSelector", selected = urlQuery$xAxis)
+    } else {
+      updateSelectizeInput(session, "xAxisSelector", selected = 'Track')
     }
     if(!is.null(urlQuery$yAxis)){
       updateSelectizeInput(session, "yAxisSelector", selected = urlQuery$yAxis)
+    } else {
+      updateSelectizeInput(session, "yAxisSelector", selected = 'ACO.1')
     }
     if(!is.null(urlQuery$colorBy)){
       updateSelectizeInput(session, "colorBySelector", selected = urlQuery$colorBy)
+    } else {
+      updateSelectizeInput(session, "colorBySelector", selected = 'Participate.in.Advance.Payment.Model')
     }
     # read text box's URL, read, and store in data frame which is returned
     inURL <- input$url
