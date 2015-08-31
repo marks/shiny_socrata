@@ -2,3 +2,5 @@ rsconnect/
 .RData
 .Rhistory
 .Rapp.history
+.Rproj.user
+shiny_socrata.Rproj
