@@ -2,13 +2,13 @@ library(shinythemes)
 
 shinyUI(fluidPage(theme = shinytheme("flatly"),
 	tags$head(includeScript("google-analytics.js")),
-	tags$title("R/Shiny w/ Open Data"),
+	tags$title("Analyze Data on Socrata using CSV Open Data APIs"),
 	
 	column(width = 12,
-		h1("Analyze CSV Data"),
+		h1("Analyze Data on Socrata using CSV Open Data APIs"),
 		HTML(
 			"<div class='alert alert-info'>",
-	 		"<strong>Heads up!</strong> This is a <em>prototype</em> using R/Shiny and Socrata. Contact Mark Silverberg (<a href='http://twitter.com/skram' target='blank' class='alert-link'>@Skram</a> || <a href='mailto:mark.silverberg@socrata.com' class='alert-link'>mark.silverberg@socrata.com</a>) with any questions or comments.",
+	 		"<strong>Heads up!</strong> This is a <em>prototype</em> using R/Shiny and Socrata. Contact Mark Silverberg (<a href='http://twitter.com/skram' target='blank' class='alert-link'>@Skram</a> || <a href='mailto:mark.silverberg@socrata.com' class='alert-link'>mark.silverberg@socrata.com</a>) with any questions or comments.<br /><a href='http://github.com/marks/shiny_socrata' class='alert-link'>PS - the code is up on Github</a<",
 			"</div>"
 		)
 	),
@@ -18,15 +18,6 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 		uiOutput('chartOptions'),
 		br(),
 		hr(),
-		# HTML(
-		# 	"<span class='help-block'>",
-		# 	"Psst: you can pass the following url parameters: ",
-		# 	"<span style='font-family: monospace;'>url</span>,",
-		# 	"<span style='font-family: monospace;'>xAxis</span>, and ",
-		# 	"<span style='font-family: monospace;'>yAxis</span>.",
-		# 	"<span style='font-family: monospace;'>colorBy</span>.",
-		# 	"</span>"
-		# ),
 		h4("Try these URLs:"),
 		helpText(HTML("<ul>
 			<li>data.cms.gov 2014 ACO performance data: ACO-1 by Track: <a href='?url=http://data.cms.gov/resource/ucce-hhpu.csv&xAxis=Participate.in.Advance.Payment.Model&yAxis=ACO.30&colorBy=Track'>?url=http://data.cms.gov/resource/ucce-hhpu.csv&xAxis=Participate.in.Advance .Payment.Model&yAxis=ACO.30&colorBy=Track</a></li>
@@ -35,12 +26,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 			<li>data.cityofnewyork.us Times Square Signage: <a href='?url=http://data.cityofnewyork.us/resource/6bzx-emuu.csv&xAxis=Location&yAxis=Width&colorBy=Type'>?url=http://data.cityofnewyork.us/resource/6bzx-emuu.csv&xAxis=Location&yAxis=Width&colorBy=Type</a></li>
 			<li>data.kcmo.org Vacant Lots: <a href='?url=http://data.kcmo.org/resource/2dru-6tkm.csv&xAxis=Zoned.As&yAxis=Square.Footage&colorBy=Property.Class'>?url=http://data.kcmo.org/resource/2dru-6tkm.csv&xAxis=Zoned.As&yAxis=Square.Footage&colorBy=Property.Class</a></li>
 			</ul>")),
-		br(),
-		hr(),
-		h4("X Axis Variable Summary"),
-		verbatimTextOutput("xAxisSummary"),
-		h4("Y Axis Variable Summary"),
-		verbatimTextOutput("yAxisSummary")
+		br()
 	),
 	mainPanel(
 		fluidRow(
@@ -71,7 +57,12 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 		helpText("To identify points: Click on or near point(s). Data table below will be populated."),
 		hr(),
 		h2("Data Table"),
-		tableOutput('table_or_click')
+		tableOutput('table_or_click'),
+		hr(),
+		h4("X Axis Variable Summary"),
+		verbatimTextOutput("xAxisSummary"),
+		h4("Y Axis Variable Summary"),
+		verbatimTextOutput("yAxisSummary")
 	)
 ))
 

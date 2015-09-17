@@ -24,7 +24,7 @@ shinyServer(function(input, output, session) {
     if(!is.null(urlQuery$colorBy)){
       updateSelectizeInput(session, "colorBySelector", selected = urlQuery$colorBy)
     } else {
-      updateSelectizeInput(session, "colorBySelector", selected = 'Participate.in.Advance.Payment.Model')
+      updateSelectizeInput(session, "colorBySelector", selected = 'Do not color')
     }
     # read text box's URL, read, and store in data frame which is returned
     inURL <- input$url
