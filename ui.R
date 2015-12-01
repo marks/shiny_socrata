@@ -8,7 +8,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
 		h1("Analyze Data on Socrata using CSV Open Data APIs"),
 		HTML(
 			"<div class='alert alert-info'>",
-	 		"<strong>Heads up!</strong> This is a <em>prototype</em> using R/Shiny and Socrata. Contact Mark Silverberg (<a href='http://twitter.com/skram' target='blank' class='alert-link'>@Skram</a> || <a href='mailto:mark.silverberg@socrata.com' class='alert-link'>mark.silverberg@socrata.com</a>) with any questions or comments.<br /><a href='http://github.com/marks/shiny_socrata' class='alert-link'>PS - the code is up on Github</a<",
+	 		"<strong>Heads up!</strong> This is a <em>prototype</em> using R/Shiny and Socrata. <a href='http://github.com/marks/shiny_socrata' class='alert-link'>The code is free and open source on Github</a>. <a href='https://dev.socrata.com/consumers/examples/using-r-and-shiny-to-find-outliers-with-box-plots.html' class='alert-link'>Blog post on dev.socrata.com</a>.",
 			"</div>"
 		)
 	),
